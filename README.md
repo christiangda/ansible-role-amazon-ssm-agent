@@ -1,7 +1,7 @@
 Role Name
 =========
-[![Build Status](https://travis-ci.org/christiangda/ansible-role-amazon-cloudwatch-agent.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-amazon-cloudwatch-agent)
-[![Ansible Role](https://img.shields.io/ansible/role/33302.svg)](https://galaxy.ansible.com/christiangda/ansible-role-amazon-cloudwatch-agent)
+[![Build Status](https://travis-ci.org/christiangda/ansible-role-amazon-ssm_agent.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-amazon-ssm_agent)
+[![Ansible Role](https://img.shields.io/ansible/role/33302.svg)](https://galaxy.ansible.com/christiangda/ansible-role-amazon-ssm_agent)
 
 
 A brief description of the role goes here.
