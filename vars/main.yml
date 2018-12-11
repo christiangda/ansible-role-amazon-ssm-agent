@@ -1,0 +1,5 @@
+---
+ssm_package: amazon-ssm-agent
+ssm_package_gpg:
+
+temp_path: /tmp
