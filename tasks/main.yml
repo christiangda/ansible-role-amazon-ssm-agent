@@ -87,3 +87,13 @@
     )
   tags:
     - include-debian-tags
+
+- name: Configure {{ ssm_package }} on RedHat/CentOS
+  include_tasks: "configure-{{ ansible_os_family|lower }}-{{ ansible_distribution_major_version }}.yml"
+  when: >
+    ansible_os_family == 'RedHat' and (
+      ansible_distribution == 'CentOS' or
+      ansible_distribution == 'RedHat'
+    )
+  tags:
+    - configure

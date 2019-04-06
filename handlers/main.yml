@@ -1,2 +1,4 @@
 ---
-# handlers file for amazon-ssm-agent
+- name: Reload {{ ssm_logrotate_daemon }}
+  command: "{{ ssm_logrotate_daemon }} -d {{ ssm_logrotate_config_file }}"
+  when: ansible_virtualization_type != "docker"

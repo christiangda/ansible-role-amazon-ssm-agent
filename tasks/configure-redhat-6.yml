@@ -1,0 +1,16 @@
+---
+- name: Enable service {{ ssm_package }} and ensure it is not masked
+  service:
+    name: "{{ ssm_package }}"
+    enabled: yes
+  tags:
+    - enable-service
+
+- name: Deploy {{ ssm_package }} logrotate configuration file
+  template:
+    src: logrotate/aws-ssm-agent.j2
+    dest: "{{ ssm_logrotate_config_file }}"
+    force: true
+  notify: Reload {{ ssm_logrotate_daemon }}
+  tags:
+    - deploy-logrotate-config

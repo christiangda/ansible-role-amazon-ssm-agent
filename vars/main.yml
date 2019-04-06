@@ -2,5 +2,11 @@
 ssm_package: amazon-ssm-agent
 # ssm_package_gpg:
 
+ssm_agent_log_file: "/var/log/amazon/ssm/amazon-ssm-agent.log"
+ssm_logrotate_config_file: /etc/logrotate.d/aws-ssm-agent
+ssm_logrotate_daemon: logrotate
+ssm_logrotate_rotation_file_size: 10M
+ssm_logrotate_rotation_files: 5
+
 ssm_global_downloads_timeout: 120
 ssm_temp_path: /tmp

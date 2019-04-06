@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+{{ ssm_agent_log_file }} {
+    size {{ ssm_logrotate_rotation_file_size }}
+    rotate {{ ssm_logrotate_rotation_files }}
+    compress
+    missingok
+    copytruncate
+    create 0644 root root
+}
