@@ -2,6 +2,33 @@
 # references
 # https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html
 
+- name: Get amazon linux version from "uname" command
+  shell: >
+    awk -v FS="recipe_name=" 'NF>1{print $2}' /etc/image-id | tr -d '"' | awk '{print $1}'
+  ignore_errors: true
+  register: amazon_linux_recipe_name_result
+  when: >
+    ansible_os_family == 'RedHat' and
+    ansible_distribution == 'Amazon'
+  changed_when: false
+
+# Define facts to manage amazon linux version in a easy way
+- name: Set fact "amazon_linux_distribution_version" for amazon linux 1
+  set_fact:
+    amazon_linux_distribution_version: 1
+  when: >
+    ansible_os_family == 'RedHat' and
+    ansible_distribution == 'Amazon' and
+    amazon_linux_recipe_name_result.stdout == 'amzn'
+
+- name: Set fact "amazon_linux_distribution_version" for amazon linux 2
+  set_fact:
+    amazon_linux_distribution_version: 2
+  when: >
+    ansible_os_family == 'RedHat' and
+    ansible_distribution == 'Amazon' and
+    amazon_linux_recipe_name_result.stdout == 'amzn2'
+
 # Selective include of vars
 - name: Include variables for RHEL - 6/7
   include_vars: "{{ item }}"
@@ -94,6 +121,15 @@
     ansible_os_family == 'RedHat' and (
       ansible_distribution == 'CentOS' or
       ansible_distribution == 'RedHat'
+    )
+  tags:
+    - configure
+
+- name: Configure {{ ssm_package }} on Amazon Linux distribution
+  include_tasks: "configure-{{ ansible_distribution|lower }}-{{ amazon_linux_distribution_version }}.yml"
+  when: >
+    ansible_os_family == 'RedHat' and (
+      ansible_distribution == 'Amazon'
     )
   tags:
     - configure
