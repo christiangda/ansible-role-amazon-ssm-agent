@@ -1,5 +1,6 @@
 ---
 ssm_package: amazon-ssm-agent
-ssm_package_gpg:
+# ssm_package_gpg:
 
-temp_path: /tmp
+ssm_global_downloads_timeout: 120
+ssm_temp_path: /tmp

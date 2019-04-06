@@ -5,7 +5,7 @@ galaxy_info:
   description: Ansible Role for AWS Systems Manager Agent (SSM Agent) Agent
   license: license GPLv3
   company: No Company
-  min_ansible_version: 2.4
+  min_ansible_version: 2.5
 
   platforms:
     - name: EL
@@ -21,6 +21,12 @@ galaxy_info:
     - name: Amazon
       versions:
         - all
+    - name: debian
+      versions:
+        - buster
+        - jessie
+        - sid
+        - stretch
 
   galaxy_tags:
     - aws
