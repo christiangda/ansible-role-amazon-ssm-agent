@@ -4,6 +4,7 @@
     name: "{{ ssm_package }}"
     enabled: yes
     masked: no
+  notify: Start {{ ssm_logrotate_daemon }} on Amazon Linux 2
   tags:
     - enable-service
 

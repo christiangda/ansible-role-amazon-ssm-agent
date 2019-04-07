@@ -3,6 +3,7 @@
   service:
     name: "{{ ssm_package }}"
     enabled: yes
+  notify: Start {{ ssm_logrotate_daemon }} on Redhat family version 6
   tags:
     - enable-service
 
