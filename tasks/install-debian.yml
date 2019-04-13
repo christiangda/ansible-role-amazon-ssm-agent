@@ -9,7 +9,7 @@
 - name: Download {{ ssm_package }}.deb
   get_url:
     url: "{{ ssm_package_url }}"
-    dest: "/{{ temp_path }}/{{ ssm_package }}.deb"
+    dest: "/{{ ssm_temp_path }}/{{ ssm_package }}.deb"
     timeout: "{{ ssm_global_downloads_timeout }}"
   tags:
     - download
@@ -17,7 +17,7 @@
 
 - name: Install {{ ssm_package }}.deb
   apt:
-    deb: "/{{ temp_path }}/{{ ssm_package }}.deb"
+    deb: "/{{ ssm_temp_path }}/{{ ssm_package }}.deb"
     state: present
   tags:
     - install

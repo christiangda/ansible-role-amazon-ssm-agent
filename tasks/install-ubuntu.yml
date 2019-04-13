@@ -1,0 +1,69 @@
+---
+- name: update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: 86400
+  tags:
+    - update-cache
+
+- name: Install {{ ssm_package }} dependencies
+  apt:
+    name: "{{ ssm_dependencies_packages }}"
+    state: present
+    force: true
+  tags:
+    - install
+
+- name: Find snap available {{ ssm_package }} version
+  command: snap find {{ ssm_package }}
+  register: snap_find_output
+  failed_when: "'FAILED' in snap_find_output.stderr"
+  tags:
+    - install-ubuntu
+
+- name: List snap {{ ssm_package }} installed version
+  command: snap list {{ ssm_package }}
+  register: snap_list_output
+  failed_when: "'FAILED' in snap_list_output.stderr"
+  tags:
+    - install-ubuntu
+
+- name: Fail when snap package {{ ssm_package }} is not available in repositories
+  fail:
+    msg: "Snap package {{ ssm_package }} is not available in repositories"
+  when: snap_find_output.stdout_lines | length == 0
+
+# # Debug
+# - name: Debug --> snap find {{ ssm_package }} version
+#   debug:
+#     msg: "{{ snap_find_output.stdout_lines }}"
+
+# - name: Debug --> snap find {{ ssm_package }} version parsed
+#   debug:
+#     msg: "{{ snap_find_output.stdout_lines[1].split()[1] }}"
+#   when: snap_find_output.stdout_lines | length > 0
+
+# - name: Debug --> snap list {{ ssm_package }} version
+#   debug:
+#     msg: "{{ snap_list_output.stdout_lines }}"
+
+# - name: Debug --> snap list {{ ssm_package }} version parsed
+#   debug:
+#     msg: "{{ snap_list_output.stdout_lines[1].split()[1] }}"
+#   when: snap_list_output.stdout_lines | length > 0
+
+- name: Set facts for {{ ssm_package }} versions
+  set_fact:
+    ssm_snap_available_version: "{{ snap_find_output.stdout_lines[1].split()[1] }}"
+    ssm_snap_installed_version: "{{ snap_list_output.stdout_lines[1].split()[1] }}"
+  when: snap_list_output.stdout_lines | length > 0
+
+- name: Install {{ ssm_package }}
+  command: snap install {{ ssm_package }} --classic
+  when: snap_list_output.stdout_lines | length == 0
+
+- name: Update {{ ssm_package }}
+  command: snap refresh {{ ssm_package }}
+  when: >
+    (snap_list_output.stdout_lines | length > 0) and
+    (ssm_snap_available_version is version(ssm_snap_installed_version, '>') and ssm_update)
