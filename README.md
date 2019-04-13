@@ -1,7 +1,7 @@
 # Ansible Role: christiangda.amazon-ssm-agent
 
 [![Build Status](https://travis-ci.org/christiangda/ansible-role-amazon-ssm-agent.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-amazon-ssm-agent)
-[![Ansible Role](https://img.shields.io/ansible/role/39191.svg)](https://galaxy.ansible.com/christiangda/amazon_cloudwatch_agent)
+[![Ansible Role](https://img.shields.io/ansible/role/39550.svg)](https://galaxy.ansible.com/christiangda/amazon_cloudwatch_agent)
 
 This role [Install AWS Systems Manager Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html)
 
