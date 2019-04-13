@@ -3,9 +3,11 @@
   service:
     name: "{{ ssm_package }}"
     enabled: yes
-  notify: Start {{ ssm_logrotate_daemon }} on Amazon Linux 1
+    state: started
+  when: ansible_virtualization_type != "docker"
   tags:
     - enable-service
+    - start-service
 
 - name: Deploy {{ ssm_package }} logrotate configuration file
   template:

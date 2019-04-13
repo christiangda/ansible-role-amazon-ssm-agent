@@ -2,23 +2,3 @@
 - name: Reload {{ ssm_logrotate_daemon }}
   command: "{{ ssm_logrotate_daemon }} -d {{ ssm_logrotate_config_file }}"
   when: ansible_virtualization_type != "docker"
-
-- name: Start {{ ssm_logrotate_daemon }} on Redhat family version 7
-  systemd:
-    name: "{{ ssm_logrotate_daemon }}"
-    state: started
-
-- name: Start {{ ssm_logrotate_daemon }} on Redhat family version 6
-  service:
-    name: "{{ ssm_logrotate_daemon }}"
-    state: started
-
-- name: Start {{ ssm_logrotate_daemon }} on Amazon Linux 2
-  systemd:
-    name: "{{ ssm_logrotate_daemon }}"
-    state: started
-
-- name: Start {{ ssm_logrotate_daemon }} on Amazon Linux 1
-  service:
-    name: "{{ ssm_logrotate_daemon }}"
-    state: started

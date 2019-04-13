@@ -103,7 +103,7 @@
       ansible_distribution == 'Amazon'
     )
   tags:
-    - include-redhat-tags
+    - include-redhat-task
 
 - name: Include tasks for installation on Debian/Ubuntu distribution
   include_tasks: "install-{{ ansible_os_family|lower }}.yml"
@@ -113,9 +113,9 @@
       ansible_distribution == 'Ubuntu'
     )
   tags:
-    - include-debian-tags
+    - include-debian-task
 
-- name: Configure {{ ssm_package }} on RedHat/CentOS
+- name: Include tasks for configure {{ ssm_package }} on RedHat/CentOS
   include_tasks: "configure-{{ ansible_os_family|lower }}-{{ ansible_distribution_major_version }}.yml"
   when: >
     ansible_os_family == 'RedHat' and (
@@ -123,13 +123,13 @@
       ansible_distribution == 'RedHat'
     )
   tags:
-    - configure
+    - include-configure-redhat
 
-- name: Configure {{ ssm_package }} on Amazon Linux distribution
+- name: Include tasks for configure {{ ssm_package }} on Amazon Linux distribution
   include_tasks: "configure-{{ ansible_distribution|lower }}-{{ amazon_linux_distribution_version }}.yml"
   when: >
     ansible_os_family == 'RedHat' and (
       ansible_distribution == 'Amazon'
     )
   tags:
-    - configure
+    - include-configure-amzn
