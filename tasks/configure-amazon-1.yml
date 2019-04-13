@@ -2,7 +2,7 @@
 - name: Enable service {{ ssm_package }} and ensure it is not masked
   service:
     name: "{{ ssm_package }}"
-    enabled: yes
+    enabled: true
     state: started
   when: ansible_virtualization_type != "docker"
   tags:

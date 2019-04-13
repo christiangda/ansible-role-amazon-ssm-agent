@@ -19,5 +19,14 @@
   apt:
     deb: "/{{ ssm_temp_path }}/{{ ssm_package }}.deb"
     state: present
+  when: not ssm_update
+  tags:
+    - install
+
+- name: Install {{ ssm_package }}.deb
+  apt:
+    deb: "/{{ ssm_temp_path }}/{{ ssm_package }}.deb"
+    state: latest
+  when: ssm_update
   tags:
     - install

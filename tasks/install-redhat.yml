@@ -12,5 +12,14 @@
   yum:
     name: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
     state: present
+  when: not ssm_update
+  tags:
+    - install
+
+- name: Install {{ ssm_package }}.rpm
+  yum:
+    name: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
+    state: latest
+  when: ssm_update
   tags:
     - install

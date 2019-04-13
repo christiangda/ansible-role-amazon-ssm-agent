@@ -18,7 +18,7 @@
   command: snap find {{ ssm_package }}
   register: snap_find_output
   failed_when: "'FAILED' in snap_find_output.stderr"
-  changed_when: False
+  changed_when: false
   tags:
     - install-ubuntu
 
@@ -26,14 +26,9 @@
   command: snap list {{ ssm_package }}
   register: snap_list_output
   failed_when: "'FAILED' in snap_list_output.stderr"
-  changed_when: False
+  changed_when: false
   tags:
     - install-ubuntu
-
-- name: Fail when snap package {{ ssm_package }} is not available in repositories
-  fail:
-    msg: "Snap package {{ ssm_package }} is not available in repositories"
-  when: snap_find_output.stdout_lines | length == 0
 
 # # Debug
 # - name: Debug --> snap find {{ ssm_package }} version
@@ -62,10 +57,13 @@
 
 - name: Install {{ ssm_package }}
   command: snap install {{ ssm_package }} --classic
-  when: snap_list_output.stdout_lines | length == 0
+  when: >
+    (snap_list_output.stdout_lines | length == 0) and
+    (ansible_virtualization_type != "docker")
 
 - name: Update {{ ssm_package }}
   command: snap refresh {{ ssm_package }}
   when: >
     (snap_list_output.stdout_lines | length > 0) and
-    (ssm_snap_available_version is version(ssm_snap_installed_version, '>') and ssm_update)
+    (ssm_snap_available_version is version(ssm_snap_installed_version, '>') and ssm_update) and
+    (ansible_virtualization_type != "docker")
