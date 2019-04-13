@@ -5,7 +5,7 @@
 
 This role [Install AWS Systems Manager Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html)
 
-Functionality:
+**Functionality:**
 * It downloads and installs AWS System Manager Agent from AWS OS distribution package
 * It rotate the Agent Log
 
