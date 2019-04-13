@@ -18,6 +18,7 @@
   command: snap find {{ ssm_package }}
   register: snap_find_output
   failed_when: "'FAILED' in snap_find_output.stderr"
+  changed_when: False
   tags:
     - install-ubuntu
 
@@ -25,6 +26,7 @@
   command: snap list {{ ssm_package }}
   register: snap_list_output
   failed_when: "'FAILED' in snap_list_output.stderr"
+  changed_when: False
   tags:
     - install-ubuntu
 

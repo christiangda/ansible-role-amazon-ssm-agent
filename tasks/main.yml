@@ -150,3 +150,11 @@
     ansible_distribution == 'Debian'
   tags:
     - include-configure-debian
+
+- name: Include tasks for configure {{ ssm_package }} on Ubuntu distribution
+  include_tasks: "configure-{{ ansible_distribution|lower }}.yml"
+  when: >
+    ansible_os_family == 'Debian' and
+    ansible_distribution == 'Ubuntu'
+  tags:
+    - include-configure-ubuntu
