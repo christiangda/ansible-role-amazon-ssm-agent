@@ -60,7 +60,7 @@ None
 - hosts: servers
     gather_facts: True
     roles:
-    - role: christiangda.amazon-ssm-agent
+    - role: christiangda.amazon_ssm_agent
         vars:
             ssm_update: true
 ```
@@ -75,7 +75,7 @@ None
     become_method: sudo
     remote_user: ec2-user
     roles:
-    - role: christiangda.amazon-ssm-agent
+    - role: christiangda.amazon_ssm_agent
 ```
 
 Inventory file sample (inventory)
