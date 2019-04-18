@@ -13,8 +13,6 @@ This role [Install AWS Systems Manager Agent](https://docs.aws.amazon.com/system
 
 This role work on RedHat, CentOS, Amazon Linux, Debian and Ubuntu distributions
 
-specific version:
-
 * RedHat
   * 6
   * 7
@@ -33,10 +31,6 @@ specific version:
   * stretch
 
 ## Role Variables
-
-**Files:**
-
-* defaults/main.yml
 
 ```yaml
 # posible values:
