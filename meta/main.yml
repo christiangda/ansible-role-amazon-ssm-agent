@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: amazon-ssm-agent
+  role_name: amazon_ssm_agent
   author: Christian González Di Antonio
   description: Ansible Role for AWS Systems Manager Agent (SSM Agent)
   license: license GPLv3
