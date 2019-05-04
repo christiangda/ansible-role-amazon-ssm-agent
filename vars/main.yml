@@ -1,6 +1,5 @@
 ---
 ssm_package: amazon-ssm-agent
-# ssm_package_gpg:
 
 ssm_agent_log_file: "/var/log/amazon/ssm/amazon-ssm-agent.log"
 ssm_logrotate_config_file: /etc/logrotate.d/aws-ssm-agent

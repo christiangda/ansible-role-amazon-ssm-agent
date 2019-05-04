@@ -108,8 +108,8 @@ This role is tested using [Molecule](https://molecule.readthedocs.io/en/latest/)
 mkdir ansible-roles
 cd ansible-roles/
 
-virtualenv --no-site-packages --python /usr/bin/python2.7 vend
-source vend/bin/activate
+python3 -m venv venv
+source venv/bin/activate
 pip install pip --upgrade
 pip install pytest
 pip install pytest-mock
@@ -120,20 +120,29 @@ pip install yamllint
 pip install molecule
 pip install ansible
 pip install docker-py
+pip install molecule[vagrant]
 ```
 
 **Clone the role repository and create symbolic link**
 
 ```bash
 git clone https://github.com/christiangda/ansible-role-amazon-ssm-agent.git
-ln -s ansible-role-amazon-ssm-agent amazon-ssm-agent
+ln -s ansible-role-amazon-ssm-agent christiangda.amazon_ssm_agent
 cd ansible-role-amazon-ssm-agent
 ```
 
 **Execute the test**
 
+Using docker in local
+
 ```bash
-molecule test
+molecule test --scenario-name default
+```
+
+Using vagrant in local
+
+```bash
+molecule test --scenario-name vagrant
 ```
 
 **Additionally if you want to test using VMs, I have a very nice [ansible-playground project](https://github.com/christiangda/ansible-playground) that use Vagrant and VirtualBox, try it!.**
