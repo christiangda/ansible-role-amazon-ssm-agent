@@ -136,10 +136,18 @@ cd ansible-role-amazon-ssm-agent
 Using docker in local
 
 ```bash
-molecule test --scenario-name default
+molecule test [--scenario-name default]
 ```
 
 Using vagrant in local
+
+```bash
+molecule create --scenario-name vagrant
+molecule converge --scenario-name vagrant
+molecule verify --scenario-name vagrant
+```
+
+or
 
 ```bash
 molecule test --scenario-name vagrant
