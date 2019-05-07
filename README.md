@@ -128,7 +128,7 @@ pip install molecule[vagrant]
 ```bash
 git clone https://github.com/christiangda/ansible-role-amazon-ssm-agent.git
 ln -s ansible-role-amazon-ssm-agent christiangda.amazon_ssm_agent
-cd ansible-role-amazon-ssm-agent
+cd christiangda.amazon_ssm_agent
 ```
 
 **Execute the test**

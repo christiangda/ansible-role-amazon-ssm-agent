@@ -9,6 +9,9 @@ driver:
 
 lint:
   name: yamllint
+  options:
+    config-data:
+      ignore: venv
 
 platforms:
   - name: centos-6
