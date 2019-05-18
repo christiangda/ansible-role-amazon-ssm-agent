@@ -104,6 +104,8 @@ This role is tested using [Molecule](https://molecule.readthedocs.io/en/latest/)
 
 **Prepare your environment**
 
+Python 3
+
 ```bash
 mkdir ansible-roles
 cd ansible-roles/
@@ -111,6 +113,9 @@ cd ansible-roles/
 python3 -m venv venv
 source venv/bin/activate
 pip install pip --upgrade
+pip install ansible
+pip install selinux
+pip install docker
 pip install pytest
 pip install pytest-mock
 pip install pylint
@@ -118,8 +123,6 @@ pip install rope
 pip install autopep8
 pip install yamllint
 pip install molecule
-pip install ansible
-pip install docker-py
 pip install molecule[vagrant]
 ```
 
