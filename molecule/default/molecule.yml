@@ -12,8 +12,14 @@ lint:
       ignore: venv
 
 platforms:
-  - name: centos-7
-    image: centos:7
+  - name: redhat-8
+    image: registry.access.redhat.com/ubi8/ubi
+
+  - name: centos-8
+    image: centos:8
+
+  - name: redhat-7
+    image: registry.access.redhat.com/ubi7/ubi
 
   - name: centos-6
     image: centos:6
@@ -24,14 +30,8 @@ platforms:
   - name: amazonlinux-1
     image: amazonlinux:1
 
-  - name: ubuntu-16.04
-    image: ubuntu:16.04
-
   - name: ubuntu-18.04
     image: ubuntu:18.04
-
-  - name: ubuntu-18.10
-    image: ubuntu:18.10
 
   - name: debian-jessie
     image: debian:jessie

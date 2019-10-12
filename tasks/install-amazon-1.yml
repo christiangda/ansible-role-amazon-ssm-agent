@@ -16,7 +16,7 @@
   tags:
     - install
 
-- name: Install {{ ssm_package }}.rpm
+- name: Install/Update {{ ssm_package }}.rpm
   yum:
     name: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
     state: latest

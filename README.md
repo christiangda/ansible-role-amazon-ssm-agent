@@ -6,6 +6,7 @@
 This role [Install AWS Systems Manager Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html)
 
 **Features:**
+
 * Downloads and installs AWS System Manager Agent from AWS distribution package
 * Rotate the Agent Log file
 
@@ -16,9 +17,11 @@ This role work on RedHat, CentOS, Amazon Linux, Debian and Ubuntu distributions
 * RedHat
   * 6
   * 7
+  * 8
 * CentOS
   * 6
   * 7
+  * 8
 * Amazon Linux
   * 1
   * 2
@@ -35,7 +38,7 @@ To see the compatibility matrix of Python vs. Ansible see the project [Travis-CI
 ## Role Variables
 
 ```yaml
-# posible values:
+# possible values:
 # - true
 # - false
 # default value: false
@@ -56,12 +59,12 @@ None
 - hosts: servers
     gather_facts: True
     roles:
-    - role: christiangda.amazon_ssm_agent
-        vars:
-            ssm_update: true
+        - role: christiangda.amazon_ssm_agent
+            vars:
+                ssm_update: true
 ```
 
-###  Amazon Linux 1/2 (my-playbook.yml)
+### Amazon Linux 1/2 (my-playbook.yml)
 
 ```yaml
 - hosts: all
@@ -71,7 +74,7 @@ None
     become_method: sudo
     remote_user: ec2-user
     roles:
-    - role: christiangda.amazon_ssm_agent
+        - role: christiangda.amazon_ssm_agent
 ```
 
 **Inventory file sample (inventory)**
@@ -117,6 +120,7 @@ source venv/bin/activate
 pip install pip --upgrade
 pip install ansible
 pip install molecule">=2.22rc1"
+pip install molecule[vagrant]
 pip install selinux
 pip install docker
 pip install pytest
@@ -147,6 +151,7 @@ source venv/bin/activate
 pip install pip --upgrade
 pip install ansible
 pip install molecule">=2.22rc1"
+pip install molecule[vagrant]
 pip install selinux
 pip install docker
 pip install pytest

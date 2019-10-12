@@ -1,0 +1,25 @@
+---
+- name: Download {{ ssm_package }}.rpm
+  get_url:
+    url: "{{ ssm_package_url }}"
+    dest: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
+    timeout: "{{ ssm_global_downloads_timeout }}"
+  tags:
+    - download
+    - install
+
+- name: Install {{ ssm_package }}.rpm
+  yum:
+    name: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
+    state: present
+  when: not ssm_update
+  tags:
+    - install
+
+- name: Install/Update {{ ssm_package }}.rpm
+  yum:
+    name: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
+    state: latest
+  when: ssm_update
+  tags:
+    - install
