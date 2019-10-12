@@ -11,7 +11,8 @@ def test_amazon_ssm_agent_is_installed(host):
     rl = host.system_info.release
 
     # Ubuntu is installed using snap package
-    if (os == 'ubuntu' and rl.split('.')[0] == '16') or (os == 'ubuntu' and rl.split('.')[0] == '18'):
+    if ((os == 'ubuntu' and rl.split('.')[0] == '16') or
+            (os == 'ubuntu' and rl.split('.')[0] == '18')):
         f = host.file('/snap/amazon-ssm-agent/current/amazon-ssm-agent')
         assert f.exists
         assert f.user == 'root'
@@ -30,7 +31,8 @@ def test_amazon_ssm_agent_running_and_enabled(host):
         assert p is not None
 
     # Ubuntu is installed using snap package
-    elif (os == 'ubuntu' and rl.split('.')[0] == '16') or (os == 'ubuntu' and rl.split('.')[0] == '18'):
+    elif ((os == 'ubuntu' and rl.split('.')[0] == '16') or
+          (os == 'ubuntu' and rl.split('.')[0] == '18')):
         amazon_ssm_agent = host.service(
             'snap.amazon-ssm-agent.amazon-ssm-agent')
         assert amazon_ssm_agent.is_running
