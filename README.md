@@ -33,7 +33,7 @@ This role work on RedHat, CentOS, Amazon Linux, Debian and Ubuntu distributions
   * jessie (8)
   * stretch (9)
   * buster (10)
-  * sid (inestable)
+  * sid (unstable)
 
 To see the compatibility matrix of Python vs. Ansible see the project [Travis-CI build matrix](https://travis-ci.org/christiangda/ansible-role-amazon-ssm-agent)
 
