@@ -11,6 +11,7 @@
 - name: Install {{ ssm_package }}.rpm
   yum:
     name: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
+    disable_gpg_check: true
     state: present
   when: not ssm_update
   tags:
@@ -19,6 +20,7 @@
 - name: Install/Update {{ ssm_package }}.rpm
   yum:
     name: "/{{ ssm_temp_path }}/{{ ssm_package }}.rpm"
+    disable_gpg_check: true
     state: latest
   when: ssm_update
   tags:
