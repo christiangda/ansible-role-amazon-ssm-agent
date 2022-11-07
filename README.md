@@ -12,13 +12,9 @@ This role [Install AWS Systems Manager Agent](https://docs.aws.amazon.com/system
 
 ## Requirements
 
-This role work on RedHat, CentOS, Amazon Linux, Debian and Ubuntu distributions
+This role works on RedHat, CentOS, Oracle, Amazon Linux, Debian and Ubuntu distributions
 
-* RedHat
-  * 6
-  * 7
-  * 8
-* CentOS
+* RedHat/CentOS/Oracle
   * 6
   * 7
   * 8
@@ -53,7 +49,7 @@ None
 
 ## Example Playbook
 
-### RedHat/CentOS, Ubuntu and Debian
+### RedHat/CentOS/Oracle, Ubuntu and Debian
 
 ```yaml
 - hosts: servers
