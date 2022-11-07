@@ -30,14 +30,17 @@
     amazon_linux_recipe_name_result.stdout == 'amzn2'
 
 # Selective include of vars
-- name: Include variables for RedHat
+- name: Include variables for RedHat based disros
   include_vars: "{{ item }}"
   with_first_found:
     - "redhat.yml"
     - "main.yml"
   when: >
-    ansible_os_family == 'RedHat' and
-    ansible_distribution == 'RedHat'
+    ansible_os_family == 'RedHat' and (
+      ansible_distribution == 'RedHat' or
+      ansible_distribution == 'CentOS' or
+      ansible_distribution == 'OracleLinux'
+    )
     and (
       ansible_distribution_major_version == '8' or
       ansible_distribution_major_version == '7' or
@@ -45,22 +48,6 @@
     )
   tags:
     - include-redhat-vars
-
-- name: Include variables for CentOS
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "centos.yml"
-    - "main.yml"
-  when: >
-    ansible_os_family == 'RedHat' and
-    ansible_distribution == 'CentOS'
-    and (
-      ansible_distribution_major_version == '8' or
-      ansible_distribution_major_version == '7' or
-      ansible_distribution_major_version == '6'
-    )
-  tags:
-    - include-centos-vars
 
 - name: include variables for Amazon Linux
   include_vars: "{{ item }}"
@@ -100,8 +87,9 @@
   include_tasks: "install-{{ ansible_os_family|lower }}-{{ ansible_distribution_major_version }}.yml"
   when: >
     ansible_os_family == 'RedHat' and (
+      ansible_distribution == 'RedHat' or
       ansible_distribution == 'CentOS' or
-      ansible_distribution == 'RedHat'
+      ansible_distribution == 'OracleLinux'
     )
   tags:
     - include-redhat-tasks
@@ -138,8 +126,9 @@
   include_tasks: "configure-{{ ansible_os_family|lower }}-{{ ansible_distribution_major_version }}.yml"
   when: >
     ansible_os_family == 'RedHat' and (
+      ansible_distribution == 'RedHat' or
       ansible_distribution == 'CentOS' or
-      ansible_distribution == 'RedHat'
+      ansible_distribution == 'OracleLinux'
     )
   tags:
     - include-configure-redhat
